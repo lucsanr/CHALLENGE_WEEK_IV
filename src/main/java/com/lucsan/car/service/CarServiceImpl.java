@@ -19,12 +19,6 @@ public class CarServiceImpl implements CarService {
     @Override
     public OutputDTO saveCar(EntryDTO entryDTO) {
 
-        String brand = entryDTO.getBrand();
-        if (!isValidBrand(brand)) {
-            throw new IllegalArgumentException("Invalid brand. Only Ford, Chevrolet, BMW, and Volvo are allowed.");
-        }
-
-
         Car car = new Car();
         car.setName(entryDTO.getName());
         car.setBrand(entryDTO.getBrand());
@@ -47,9 +41,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public OutputDTO getCarByIdChassi(Long idChassi) {
-
-        Car car = carRepository.findById(idChassi)
-                .orElseThrow(() -> new IllegalArgumentException("Car not found for idChassi: " + idChassi));
+        Car car = carRepository.findById(idChassi).orElse(null);
 
 
         OutputDTO outputDTO = new OutputDTO();
@@ -61,6 +53,7 @@ public class CarServiceImpl implements CarService {
 
         return outputDTO;
     }
+
 
 
     private boolean isValidBrand(String brand) {

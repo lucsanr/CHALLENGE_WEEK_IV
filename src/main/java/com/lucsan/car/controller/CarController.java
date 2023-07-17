@@ -42,7 +42,7 @@ public class CarController {
             throw new IllegalArgumentException("Color is required");
         }
         if (isNullOrEmpty(entryDTO.getFabricationYear())) {
-            throw new IllegalArgumentException("FabricationYear is required");
+            throw new IllegalArgumentException("Fabrication Year is required");
         }
 
         if (!isValidBrand(entryDTO.getBrand())) {
